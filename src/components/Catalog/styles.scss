@@ -1,0 +1,18 @@
+.sorter {
+    margin: 20px auto;
+    width: 40%;
+}
+.catalog {
+    padding: 0 20px;
+    overflow: auto;
+    text-align: center;
+}
+@media only screen and (max-width: 380px) {
+    .sorter {
+        margin-left: 20px;
+        margin-right: 20px;
+        width: calc(100% - 40px);
+        min-width: 145px;
+    }
+}
+  

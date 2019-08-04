@@ -1,0 +1,67 @@
+.card {
+    text-align: center;
+    position: relative;
+    font-size: 12px;
+    background-color: #ccc;
+    width: 16%;
+    height: 250px;
+    margin: 0 15px 15px 0;
+    border-radius: 5px;
+    box-shadow:  0 3px 3px 0 rgba(0,20,29,.2),0 2px 4px 0 rgba(0,20,29,.15);
+    transition: box-shadow .3s ease-in-out;
+    align-items: center;
+    overflow: hidden;
+    display: inline-block;
+    &:hover {
+        box-shadow: 0 3px 3px 0 rgba(0,20,29,.2),0 10px 10px 0 rgba(0,20,29,.1);
+    }
+    .noimage {
+        background: url('../../static/card_bkd.jpg') center;
+        background-size: contain;
+        height: 110px;
+        .centered {
+            margin-top: 10px;
+            height: 80%;
+        }
+    }
+    .image {
+        background: url('../../static/bridge.jpg') center;
+        background-size: cover;
+        height: 110px;
+    }
+    .content {
+        padding: 15px 10px;
+        p {
+            margin-top: 0;
+            &:first-of-type {
+                font-size: 13px;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+        }
+    }
+    .price {
+        text-align: right;
+        position: absolute;
+        border-top: .5px solid #000;
+        width: calc(100% - 20px);
+        font-weight: bold;
+        bottom: 0;
+        color: rgb(17, 131, 74);
+        padding: 5px 0;
+        margin: 0 10px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .card {
+        width: 33%;
+        min-width: 145px;
+    }
+}
+@media only screen and (max-width: 380px) {
+    .card {
+        width: 100%;
+        clear: left;
+        min-width: 145px;
+    }
+}

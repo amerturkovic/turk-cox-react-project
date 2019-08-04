@@ -1,0 +1,22 @@
+
+select {
+  padding: 5px 10px;
+  text-overflow: ellipsis;
+  background-color: #fff;
+  border: 1px solid #ccd6db;
+  cursor: pointer;
+  list-style: none;
+  font-size: 12px;
+  color: #3F3F3F;
+  width: 100%;
+  option {
+    font-size: 12px;
+  }
+  &:focus {
+      &::-ms-value { color: #3F3F3F; background: transparent; }
+  }
+  &:focus,
+  &:active {
+      border: 1px solid #255bc7;
+  }
+}
