@@ -26,16 +26,21 @@ export class Catalog extends Component {
         this.sortBy(event)
     }
 
-    sortBy(prop){
+    sortBy(prop = this.state.sortby){
         const sorted = this.sort(locations, prop)
         this.setState({
-            sorted: this.pageCards(sorted)
+            sortby: prop,
+            sorted: this.refreshCards(sorted, 1),
+            currentPage: 1,
         })
     }
     
     handlePageChange(pageNumber){
+        const sorted = this.sort(locations, this.state.sortby)
+        const sliced = this.refreshCards(sorted, pageNumber)
         this.setState({
-            currentPage: pageNumber
+            currentPage: pageNumber,
+            sorted: sliced
         })
     }
     /**
@@ -58,19 +63,14 @@ export class Catalog extends Component {
         });
     }
 
-    pageCards(sortedCards){
-        const start = (this.state.currentPage - 1) * this.state.perPage;
+    refreshCards(sortedCards, page){
+        let pageNum = page ? page : this.state.currentPage
+        const start = (pageNum - 1) * this.state.perPage;
         const end = start + this.state.perPage;
         const spliced = sortedCards.slice(start, end);
         return spliced;
     }
-    /**
-     * Calculate Total Pages value
-     */
-    getTotalPages() {
-        return Math.ceil(this.state.sorted.length / this.state.perPage);
-    }
-
+    
     render() {
         const sortByOptions = [
             { value: 'Heading', label: 'Heading' },
@@ -86,7 +86,10 @@ export class Catalog extends Component {
                     <Card key={index} location={obj} />
                 )}
             </div>
-            <Pagination handleOnChange={this.handlePageChange} currentPage={this.state.currentPage} itemsPerPage={this.state.perPage} totalPages={this.getTotalPages()} />
+            <div className="navigation">
+                <Pagination handleOnChange={this.handlePageChange} currentPage={this.state.currentPage} itemsPerPage={this.state.perPage} totalRecords={locations.length}/>
+            </div>
+            
         </div>
     }
 }

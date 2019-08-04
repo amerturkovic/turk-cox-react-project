@@ -4,15 +4,21 @@
 }
 .catalog {
     padding: 0 20px;
-    overflow: auto;
+    width: calc(100% - 40px);
     text-align: center;
 }
+.navigation {
+    margin: 20px auto;
+    width: 40%;
+}
 @media only screen and (max-width: 380px) {
-    .sorter {
+    .sorter,
+    .navigation {
         margin-left: 20px;
         margin-right: 20px;
         width: calc(100% - 40px);
         min-width: 145px;
     }
+
 }
   
