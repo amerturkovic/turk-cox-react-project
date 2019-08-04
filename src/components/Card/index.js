@@ -14,6 +14,7 @@ export class Card extends Component {
 
   render() {
     const showBridge = this.props.location.showBridge;
+    // check if image exist if not display default graphic
     const imgClass = showBridge ? 'image' : 'noimage';
     return <div className="card">
       <div className={imgClass}>

@@ -19,6 +19,7 @@ export class Catalog extends Component {
     }
 
     componentDidMount() {
+        // sort on initial mount
         this.sortBy(this.state.sortby)
     }
 
@@ -26,6 +27,10 @@ export class Catalog extends Component {
         this.sortBy(event)
     }
 
+    /**
+     * sort array and save its to state
+     * @param {string} json o valuebject prop 
+     */
     sortBy(prop = this.state.sortby){
         const sorted = this.sort(locations, prop)
         this.setState({
@@ -36,7 +41,9 @@ export class Catalog extends Component {
     }
     
     handlePageChange(pageNumber){
+        // sort initial json array by currently selected object prop
         const sorted = this.sort(locations, this.state.sortby)
+        // get 'perPage' cards based on page number / eg 0-4 or 5-9
         const sliced = this.refreshCards(sorted, pageNumber)
         this.setState({
             currentPage: pageNumber,
@@ -46,23 +53,29 @@ export class Catalog extends Component {
     /**
      * 
      * @param arr Array to be sorted
-     * @param objProp Object property to ne used for sorting
-     * @return order num
+     * @param objProp Object property to be used for sorting
+     * @return ordered array
      */
     sort(arr, objProp) {
         return arr.sort((a, b) => {
-        const sortA = a[objProp];
-        const sortB = b[objProp];
-        if (sortA < sortB) {
-            return -1;
-        } else if (sortA > sortB) {
-            return 1;
-        } else {
-            return 0;
-        }
+            const sortA = a[objProp];
+            const sortB = b[objProp];
+            if (sortA < sortB) {
+                return -1;
+            } else if (sortA > sortB) {
+                return 1;
+            } else {
+                return 0;
+            }
         });
     }
 
+    /**
+     * 
+     * @param {array} presorted array 
+     * @param {number} current page number
+     * @return spliced array of perPage number of items
+     */
     refreshCards(sortedCards, page){
         let pageNum = page ? page : this.state.currentPage
         const start = (pageNum - 1) * this.state.perPage;
@@ -72,6 +85,7 @@ export class Catalog extends Component {
     }
     
     render() {
+        // dropdown options used for sorting
         const sortByOptions = [
             { value: 'Heading', label: 'Heading' },
             { value: 'Subheading', label: 'Subheading' },

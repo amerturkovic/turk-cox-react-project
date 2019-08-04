@@ -8,13 +8,16 @@ export class SelectBox extends Component {
         classes: PropTypes.string,
         handleOnChange: PropTypes.func.isRequired
     }
-
+    /**
+     * create html option elements
+     * @param {array} selectbox options 
+     */
     createOptions(options) {
         return options.map(o => (
             <option value={o.value} key={o.value}>
               {o.label}
             </option>
-          ));
+        ));
     }
   
     render() {

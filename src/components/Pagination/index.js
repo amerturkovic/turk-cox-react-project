@@ -19,8 +19,8 @@ export class Pagination extends Component {
         currentPage: PropTypes.number
 	}
      /**
-	 * Triggered by nav arrow or input directly
-	 * @param event 
+	 * Triggered by page number buttons
+	 * @param {number} page number 
 	 */
 	pageChangeAction(ev) {
 		const event = ev.target.value
@@ -33,7 +33,10 @@ export class Pagination extends Component {
 		}
         this.props.handleOnChange(currentPage);
 	}
-	
+	/**
+	 * Triggered by prev or next buttons
+	 * @param {string} direction 
+	 */
 	pageChangeButtonAction(direction) {
 		let currentPage = this.props.currentPage
 		if (direction === 'up') {
