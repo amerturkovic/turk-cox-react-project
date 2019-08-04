@@ -45,10 +45,14 @@ export class Pagination extends Component {
 	}
 
     render() {
+		const arr = Array(this.state.totalPages).fill(null);
         return <div className="pagination">
-			<button onClick={() => this.pageChangeButtonAction('down')} disabled={this.props.currentPage === 1}>previous</button>
+			<button onClick={() => this.pageChangeButtonAction('down')} disabled={this.props.currentPage === 1}>prev</button>
+			{arr.map((el, i) =>
+                <button key={i + 1} onClick={() => this.props.handleOnChange(i + 1)} disabled={this.props.currentPage === i + 1}>{i + 1}</button>
+            )}
 			<button onClick={() => this.pageChangeButtonAction('up')} disabled={this.props.currentPage === this.state.totalPages}>next</button>
-			<div>Page {this.props.currentPage} of {this.state.totalPages} | {this.props.totalRecords} records</div>
+			<div>{this.props.totalRecords} records</div>
         </div>
     }
 }

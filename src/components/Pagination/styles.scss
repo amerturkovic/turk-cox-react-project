@@ -2,11 +2,13 @@
 
 .pagination {
     text-align: center;
-    button,
-    div {
+    button {
         display: inline-block;
-        margin-right: 10px;
+        margin-right: 5px;
         margin-bottom: 10px;
+    }
+    div {
+        display: block;
     }
     button {
         cursor: pointer;
